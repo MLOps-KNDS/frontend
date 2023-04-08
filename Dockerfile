@@ -1,5 +1,7 @@
 FROM node:latest
 
+ENV API_URL="http://localhost:3000/"
+
 COPY . /app
 
 WORKDIR /app

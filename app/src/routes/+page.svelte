@@ -80,7 +80,9 @@ h1 {
 <script lang="ts">
     import { onMount } from 'svelte';
 
-    const base_api = 'http://localhost:3000/';
+    // Look of the API_URL environment variable
+    // If it is not set, use the default value
+    const base_api = process.env.API_URL || 'http://localhost:3000/';
     type User = {
         name: string;
         surname: string;

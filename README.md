@@ -4,7 +4,7 @@ Space for our frontend.
 
 ## Getting Started
 
-For now the app is tested with the [app.py](test/app.py) file. It imitates the backend and can be used to test the frontend.
+For now the app is tested with the [app.py](test/app.py) file. It imitates the backend and can be used to test the frontend. To set a custom url for the app to look for change the API_URL enviroment variable.
 
 ### Prerequisites
 
