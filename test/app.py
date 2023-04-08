@@ -2,6 +2,8 @@ import fastapi
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from dataclasses import dataclass
+# import random element selection
+from random import choice
 
 
 app = fastapi.FastAPI()
@@ -25,7 +27,7 @@ class User:
 class Model:
     name: str
     description: str
-    status: bool
+    status: str
     created_at: str
     created_by: User
     updated_at: str
@@ -43,23 +45,22 @@ users = [
     User("Bar", "Foo", "bar@foo.com")
 ]
 
-# create 6 random models
-
-models = []
-for i, user in enumerate(users):
-    models.append(Model(
-        name=f"Model {i}",
-        description=f"Description {i}",
-        status=True,
-        created_at="2021-01-01",
-        created_by=user,
-        updated_at="2021-01-01",
-        updated_by=user
-    ))
-
 
 @app.get("/models")
 def get_models():
+    # create 6 random models
+    models = []
+    statuses = ["online", "offline"]
+    for i, user in enumerate(users):
+        models.append(Model(
+            name=f"Model {i}",
+            description=f"Description {i}",
+            status=choice(statuses),
+            created_at=f"2021-01-0{i}",
+            created_by=user,
+            updated_at=f"2021-01-0{i+1}",
+            updated_by=user
+        ))
     return {"models": models}
 
 

@@ -1,27 +1,29 @@
 <h1>Dashboard</h1>
 
-<div class=models_header>Models:</div>
+<div class="models_header">Models:</div>
 
 {#if model_error !== ''}
     <p class="error">{model_error}</p>
 {:else if models.length === 0}
     <p class="loading">Loading models...</p>
 {:else}
+    <div class="models">
     {#each models as model}
-        <div>
+        <div class="model">
             <h2>{model.name}</h2>
-            {#if model.status == 'online'}
+            {#if model.status == "online"}
                 <p class="online status">Online</p>
             {:else}
                 <p class="offline status">Offline</p>
             {/if}
-            <p>{model.description}</p>
-            <p>Created at: {model.created_at}</p>
-            <p>Created by: {model.created_by.name} {model.created_by.surname}</p>
-            <p>Updated at: {model.updated_at}</p>
-            <p>Updated by: {model.updated_by.name} {model.updated_by.surname}</p>
+            <p class="model_info">Created by: {model.created_by.name} {model.created_by.surname}</p>
+            <p class="model_info">Created at: {model.created_at}</p>
+            <p class="model_info">Updated by: {model.updated_by.name} {model.updated_by.surname}</p>
+            <p class="model_info">Updated at: {model.updated_at}</p>
+            <p class="model_info">Description: {model.description}</p>
         </div>
     {/each}
+    </div>
 {/if}
 
 
@@ -29,6 +31,23 @@
 h1 {
     color: red;
     text-align: center;
+}
+.models {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+.model_info {
+    text-align: left;
+}
+.model {
+    margin: 0.5em;
+    padding: 0.5em;
+    width: 20em;
+    border: 1px solid black;
+    border-radius: 2px;
+    background-color:azure;
 }
 .online {
     color: green;
@@ -51,7 +70,6 @@ h1 {
 }
 .error {
     color: red;
-    text-align: center;
     font-size: 1.5em;
 }
 :global(body) {
