@@ -1,4 +1,3 @@
-# latest node
 FROM node:latest
 
 COPY . /app

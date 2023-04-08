@@ -16,9 +16,9 @@
                 <p class="offline status">Offline</p>
             {/if}
             <p>{model.description}</p>
-            <p>Created at: {model.created_at_parsed}</p>
+            <p>Created at: {model.created_at}</p>
             <p>Created by: {model.created_by.name} {model.created_by.surname}</p>
-            <p>Updated at: {model.updated_at_parsed}</p>
+            <p>Updated at: {model.updated_at}</p>
             <p>Updated by: {model.updated_by.name} {model.updated_by.surname}</p>
         </div>
     {/each}
@@ -52,11 +52,9 @@ h1 {
 .error {
     color: red;
     text-align: center;
-    /* change the font */
     font-size: 1.5em;
 }
 :global(body) {
-    /* set background color to light blue */
     background-color: #e6f2ff;
 }
 </style>
@@ -74,11 +72,9 @@ h1 {
         name: string;
         description: string;
         status: boolean;
-        created_at: number;
-        created_at_parsed: Date;
+        created_at: string;
         created_by: User;
-        updated_at: number;
-        updated_at_parsed: Date;
+        updated_at: string;
         updated_by: User;
     };
     let model_error = '';
@@ -90,12 +86,6 @@ h1 {
             .then(response => response.json())
             .then(data => {
                 models = data;
-                // parse timestamps
-                models.forEach(model => {
-                    model.created_at_parsed = new Date(model.created_at);
-                    model.updated_at_parsed = new Date(model.updated_at);
-                });
-
             })
             .catch(err => {
                 const not_found_msg = 'API not found';
