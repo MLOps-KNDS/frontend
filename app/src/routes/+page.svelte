@@ -10,7 +10,7 @@
     {#each models as model}
         <div>
             <h2>{model.name}</h2>
-            {#if model.status}
+            {#if model.status == 'online'}
                 <p class="online status">Online</p>
             {:else}
                 <p class="offline status">Offline</p>
@@ -71,7 +71,7 @@ h1 {
     type Model = {
         name: string;
         description: string;
-        status: boolean;
+        status: string;
         created_at: string;
         created_by: User;
         updated_at: string;
@@ -85,7 +85,7 @@ h1 {
         fetch(base_api + 'models')
             .then(response => response.json())
             .then(data => {
-                models = data;
+                models = data.models;
             })
             .catch(err => {
                 const not_found_msg = 'API not found';
