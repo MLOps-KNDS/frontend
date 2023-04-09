@@ -1,12 +1,13 @@
-<div class="shadow-md bg-gray-200 rounded-md p-4">
-    <div class="flex justify-between items-center mb-3">
+<div class="shadow-md bg-gray-200 rounded-md py-1">
+    <div class="flex mb-3 m-1">
         <!-- on click redirecto to root -->
-      <img src="project-logo.png" class="h-10 w-10 rounded-full mr-2" alt="Project logo" on:mousedown={() => window.location.href = '/'}>
-      <button class="mr-4 text-gray-500 hover:text-gray-700 focus:text-gray-700 font-medium text-lg focus:outline-none" class:active="{activeTab === 1}" on:click={() => setActiveTab(1)}>Tab 1</button>
-      <button class="mr-4 text-gray-500 hover:text-gray-700 focus:text-gray-700 font-medium text-lg focus:outline-none" class:active="{activeTab === 2}" on:click={() => setActiveTab(2)}>Tab 2</button>
-      <button class="text-gray-500 hover:text-gray-700 focus:text-gray-700 font-medium text-lg focus:outline-none" class:active="{activeTab === 3}" on:click={() => setActiveTab(3)}>Tab 3</button>
-      <img src="organization-logo.png" class="h-10 w-10 rounded-full ml-2" alt="Organization logo">
-      <img src="profile-logo.png" class="h-10 w-10 rounded-full mr-2" alt="Profile logo">
+      <img src="https://avatars.githubusercontent.com/u/128986668?s=88&v=4" class="h-10 w-10 mr-2 ml-3" alt="Project logo" on:mousedown={() => window.location.href = '/'}>
+      <button class="mx-4 text-gray-500 hover:text-blue-700 focus:text-gray-700 font-medium text-3xl px-2 focus:outline-none" class:active="{activeTab === 1}">Dashboard</button>
+      <button class="mx-4 text-gray-500 hover:text-blue-700 focus:text-gray-700 font-medium text-3xl focus:outline-none" class:active="{activeTab === 2}">Testing</button>
+      <button class="mx-4 text-gray-500 hover:text-blue-700 focus:text-gray-700 font-medium text-3xl focus:outline-none" class:active="{activeTab === 3}">Model metrics</button>
+      <button class="mx-4 text-gray-500 hover:text-blue-700 focus:text-gray-700 font-medium text-3xl focus:outline-none" class:active="{activeTab === 3}">Models</button>
+      <img src="https://avatars.githubusercontent.com/u/11145684?s=200&v=4" class="h-10 w-10 ml-auto" alt="Organization logo" on:mousedown={() => window.location.href = "https://github.com/Kolo-Naukowe-Data-Science-PW"}>
+      <img src="profile-logo.png" class="h-10 w-10 mx-3" alt="Profile logo">
     </div>
 
     {#if activeTab === 1}
@@ -33,7 +34,7 @@
     <div class="flex flex-wrap justify-center">
     {#each models as model}
         <div class="bg-blue-5 border-gray-500 border-2 m-4 p-3 text-center">
-            <h2>{model.name}</h2>
+            <h2 class="font-semibold text-xl">{"model.namemodel.name"}</h2>
             {#if model.status == "online"}
                 <p class="online status">Online</p>
             {:else}
@@ -75,7 +76,6 @@
 </style>
 
 <script lang="ts">
-	import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
 
     // Look of the API_URL environment variable
@@ -100,10 +100,7 @@
 
     let activeTab = 0;
     const setActiveTab = (tab: number) => {
-        if (activeTab !== tab)
-            activeTab = tab;
-        else
-            activeTab = 0;
+        // TODO: go to the correct page
     };
 
     onMount(() => {
