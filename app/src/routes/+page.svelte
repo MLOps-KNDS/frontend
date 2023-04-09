@@ -34,7 +34,7 @@
     <div class="flex flex-wrap justify-center">
     {#each models as model}
         <div class="bg-blue-5 border-gray-500 border-2 m-4 p-3 text-center">
-            <h2 class="font-semibold text-xl">{"model.namemodel.name"}</h2>
+            <h2 class="font-semibold text-xl">{model.name}</h2>
             {#if model.status == "online"}
                 <p class="online status">Online</p>
             {:else}
