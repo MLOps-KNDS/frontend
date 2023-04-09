@@ -3,6 +3,7 @@ export type User = {
     surname: string;
     email: string;
 };
+
 export type Model = {
     name: string;
     description: string;
@@ -12,3 +13,6 @@ export type Model = {
     updated_at: string;
     updated_by: User;
 };
+
+export type Tab = "dashboard" | "testing" | "model_metrics" | "models" | "datasets";
+export type Position = "relative" | "absolute" | "fixed" | "sticky" | "static" | "inherit" | "initial" | "unset";
