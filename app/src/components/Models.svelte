@@ -1,8 +1,9 @@
 <div>
     {#if model_error !== ''}
-        <p class="error">{model_error}</p>
+        <p class="error text-center">{model_error}</p>
     {:else if models.length === 0}
         <p class="loading text-center">Loading models...</p>
+        <Loading/>
     {:else}
         <div class="flex flex-wrap justify-center">
         {#each models as model}
@@ -49,8 +50,11 @@
     import { onMount } from 'svelte';
     import { api_url } from '../config';
     import type { Model } from '../types';
+    import Loading from './Loading.svelte';
+
     let model_error = '';
     let models: Model[] = [];
+
     onMount(() => {
         console.log(api_url);
         // fetch data from server
@@ -63,7 +67,7 @@
             })
             .catch(err => {
                 console.log(err);
-                const not_found_msg = 'API not found';
+                const not_found_msg = 'API was not found';
                 const unexpected_msg = 'Unexpected error';
                 model_error = 'Error: ';
                 switch(err.status) {
