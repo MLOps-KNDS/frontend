@@ -14,5 +14,6 @@ export type Model = {
     updated_by: User;
 };
 
-export type Tab = "dashboard" | "testing" | "model_metrics" | "models" | "datasets";
+export type Tab = "Dashboard" | "Testing" | "Model Metrics" | "Models" | "Datasets" | "Profile";
 export type Position = "relative" | "absolute" | "fixed" | "sticky" | "static" | "inherit" | "initial" | "unset";
+export const Tabs: Tab[] = ["Dashboard", "Testing", "Model Metrics", "Models", "Datasets", "Profile"];

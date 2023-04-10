@@ -114,6 +114,10 @@
 
 <style>
 
+:global(body) {
+        background-color: #fffbfb;
+}
+
 .wraper {
   position: var(--position);
 }

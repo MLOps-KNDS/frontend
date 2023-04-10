@@ -1,12 +1,12 @@
-<div class={position}>
+<div>
     {#if model_error !== ''}
         <p class="error">{model_error}</p>
     {:else if models.length === 0}
-        <p class="loading">Loading models...</p>
+        <p class="loading text-center">Loading models...</p>
     {:else}
         <div class="flex flex-wrap justify-center">
         {#each models as model}
-            <div class="bg-blue-5 border-gray-500 border-2 m-4 p-3 text-center">
+            <div class="bg-blue-5 border-gray-500 border-2 m-4 p-3 text-center bg-slate-100">
                 <h2 class="font-semibold text-xl">{model.name}</h2>
                 {#if model.status == "online"}
                     <p class="online status">Online</p>
@@ -47,13 +47,10 @@
 
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { base_api } from './config';
-    import type { Model } from './types';
-    import type { Position } from './types';
+    import { base_api } from '../config';
+    import type { Model } from '../types';
     let model_error = '';
     let models: Model[] = [];
-    // export css position
-    export let position: Position = 'relative';
     onMount(() => {
         console.log(base_api);
         // fetch data from server
