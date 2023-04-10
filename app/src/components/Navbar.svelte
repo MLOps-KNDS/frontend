@@ -8,7 +8,7 @@
     {#each Tabs as tab}
         <button class="mx-4 text-gray-500 hover:text-blue-700 focus:text-gray-800 font-medium text-3xl px-2 focus:outline-none"
         class:active="{activeTab === tab}"
-        on:mousedown={() => window.location.href = '/' + tab.toLowerCase()}>{tab}</button>
+        on:click={() => window.location.href = '/' + tab.toLowerCase()}>{tab}</button>
     {/each}
     <img src="https://avatars.githubusercontent.com/u/11145684?s=200&v=4"
         class="h-12 w-12 ml-auto" alt="Organization logo"

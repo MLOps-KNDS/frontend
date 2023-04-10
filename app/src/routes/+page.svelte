@@ -7,7 +7,7 @@
         <Models/>
     </div>
 </div>
-<Background position="relative"/>
+<Background position="static"/>
 <Footer/>
 
 <script lang="ts">
