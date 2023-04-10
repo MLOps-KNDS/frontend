@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { dev_server_url } from './config';
 import { createServer } from 'vite';
 import { test } from 'vitest';
+import { page_title } from './config';
 import puppeteer from 'puppeteer';
 
 describe('sum test', () => {
@@ -30,7 +31,7 @@ describe('Main page', () => {
     await page.goto(dev_server_url);
 
     const title = await page.title();
-    expect(title).toBe('MLOps Project');
+    expect(title).toBe(page_title);
 
     await server.close();
     await browser.close();
