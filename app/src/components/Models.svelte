@@ -1,8 +1,8 @@
 <div>
     {#if model_error !== ''}
-        <p class="error text-center">{model_error}</p>
+        <p class="error text-center my-10 text-4xl">{model_error}</p>
     {:else if models.length === 0}
-        <p class="loading text-center">Loading models...</p>
+        <p class="loading text-center my-24 text-4xl text-purple-600">Loading models...</p>
         <Loading/>
     {:else}
         <div class="flex flex-wrap justify-center">
@@ -35,11 +35,6 @@
     .status {
         font-size: 1.5em;
     }
-    .loading {
-        text-align: center;
-        font-size: 1.5em;
-        color: purple;
-    }
     .error {
         color: red;
         font-size: 1.5em;
@@ -50,7 +45,7 @@
     import { onMount } from 'svelte';
     import { api_url } from '../config';
     import type { Model } from '../types';
-    import Loading from './Loading.svelte';
+    import Loading from './LoadingCircle.svelte';
 
     let model_error = '';
     let models: Model[] = [];

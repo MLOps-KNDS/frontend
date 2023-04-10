@@ -1,4 +1,4 @@
-<div class="rainbow-spinner mx-auto mt-40"></div>
+<div class="rainbow-spinner mx-auto"></div>
 
 <style>
 .rainbow-spinner {
