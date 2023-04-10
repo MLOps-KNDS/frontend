@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@testing-library/svelte": "^3.2.2"
+  }
+}

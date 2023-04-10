@@ -47,15 +47,15 @@
 
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { base_api } from '../config';
+    import { api_url } from '../config';
     import type { Model } from '../types';
     let model_error = '';
     let models: Model[] = [];
     onMount(() => {
-        console.log(base_api);
+        console.log(api_url);
         // fetch data from server
         // if there is an error, show an error message
-        fetch(base_api + 'models')
+        fetch(api_url + 'models')
             .then(response => response.json())
             .then(data => {
                 console.log(data)
