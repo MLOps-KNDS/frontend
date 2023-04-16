@@ -14,29 +14,28 @@ describe('sum test', () => {
 const server = await createServer();
 
 describe('Main page', () => {
-  test('loads', async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto('http://localhost:5173/');
+	test('loads', async () => {
+		const browser = await puppeteer.launch();
+		const page = await browser.newPage();
+		await page.goto('http://localhost:5173/');
 
-    await page.goto(dev_server_url);
+		await page.goto(dev_server_url);
 
-    const mainHeading = await page.$('h1');
-    expect(mainHeading).not.toBeNull();
-  }, 10000);
+		const mainHeading = await page.$('h1');
+		expect(mainHeading).not.toBeNull();
+	}, 10000);
 
-  test('has correct title', async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(dev_server_url);
+	test('has correct title', async () => {
+		const browser = await puppeteer.launch();
+		const page = await browser.newPage();
+		await page.goto(dev_server_url);
 
-    const title = await page.title();
-    expect(title).toBe(page_title);
+		const title = await page.title();
+		expect(title).toBe(page_title);
 
-    await server.close();
-    await browser.close();
-  }, 10000);
+		await server.close();
+		await browser.close();
+	}, 10000);
 });
 
 await server.close();
-
