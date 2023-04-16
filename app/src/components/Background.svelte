@@ -4,7 +4,7 @@
 
 <!-- Credit to https://codepen.io/Sepion/pen/ZQJyeq -->
 
-<div style="--position: {position}" class="wraper">
+<div class="wraper" style="position: {position};">
 	<svg
 		version="1.1"
 		id="home-anim"
