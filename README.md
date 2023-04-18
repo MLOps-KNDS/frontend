@@ -25,7 +25,7 @@ For now the app is tested with the [app.py](test/app.py) file. It imitates the b
     pip install -r requirements.txt
     ```
 
-3. Go to the [app](app) directory and run:
+3. Go to the [my-app](my-app) directory and run:
 
     ```sh
     npm install
