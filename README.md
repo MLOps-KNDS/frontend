@@ -61,7 +61,3 @@ For now the app is tested with the [app.py](test/app.py) file. It imitates the b
 ## Authors
 
 - **[radekaadek](https://github.com/radekaadek)** - *Initial work*
-
-## Credits
-
-- **[Sepion](https://codepen.io/Sepion)** - *The [background](https://codepen.io/Sepion/pen/ZQJyeq) used*
