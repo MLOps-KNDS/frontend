@@ -1,40 +1,37 @@
 import { Sidebar, sidebarClasses, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
-
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
-import GroupWorkIcon from '@mui/icons-material/GroupWork';
-import BiotechIcon from '@mui/icons-material/Biotech';
-import AssistantDirectionIcon from '@mui/icons-material/AssistantDirection';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import { navItems } from "@/Routes";
+import { ThemeColors } from "@/ThemeColors";
 import Link from "next/link";
 import Image from "next/image";
+import { Typography } from "@mui/material";
 
 
 export default function NavigationBar() {
   const { collapseSidebar } = useProSidebar();
-  const { collapsed } = useProSidebar();
 
   return (
     <Sidebar rootStyles={{
         [`.${sidebarClasses.container}`]: {
-          backgroundColor: '#222831'
+          backgroundColor: ThemeColors.secondary,
         },
       }}
-      style={{ height: "100vh" }}
+      style={{ height: "96vh", width: "5rem" }}
       transitionDuration={200}
       defaultCollapsed={true}
+      width="11rem"
       onMouseEnter={() => {collapseSidebar();}} 
-      onMouseLeave={() => {collapseSidebar();}}>
+      onMouseLeave={() => {collapseSidebar();}}
+      >
         <Menu>
           <Link href="/">
             <Image src="/koderzy.png" alt="Koderzy" width={100} height={100} />
           </Link>
-          <MenuItem href="/" icon={<HomeOutlinedIcon />}>Home</MenuItem>
-          <MenuItem href="/models" icon={<AirplanemodeActiveIcon />}>Models</MenuItem>
-          <MenuItem href="/tests" icon={<BiotechIcon />}>Tests</MenuItem>
-          <MenuItem href="/pools" icon={<GroupWorkIcon />}>Pools</MenuItem>
-          <MenuItem href="/gates" icon={<AssistantDirectionIcon />}>Gates</MenuItem>
-          <MenuItem href="/metrics" icon={<BarChartIcon />}>Metrics</MenuItem>
+          {/* <MenuItem href="/" icon={<HomeOutlinedIcon htmlColor={ThemeColors.white}/>}>Home</MenuItem> */}
+          {navItems.map((item) => (
+            <MenuItem href={item.url} icon={item.icon} key={item.name}>
+              <Typography variant="h6" color="white">{item.name}</Typography>
+            </MenuItem>
+          ))}
         </Menu>
       </Sidebar>
   );
