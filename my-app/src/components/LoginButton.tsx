@@ -3,7 +3,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 
 const LoginButton = () => {
     const { data: session, status } = useSession();
-    if (session)
+    if (session?.user)
         return (
             <div>
                 <div>Logged in as {session.user.email}</div>
