@@ -1,8 +1,10 @@
 const Models = () => {
-    <Layout>
-      <h1>Models</h1>
-    </Layout>
-  };
+    return (
+      <div>
+        <h1>Models</h1>
+      </div>
+    );
+};
   
   export default Models;
   
