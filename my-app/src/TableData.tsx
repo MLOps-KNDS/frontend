@@ -1,4 +1,5 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { Row } from './Types';
 
 export const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -31,13 +32,6 @@ export const columns: GridColDef[] = [
         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
   ];
-
-type Row = {
-    id: number;
-    lastName: string;
-    firstName: string | null;
-    age: number | null;
-};
 
 export const rows: Row[] = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },

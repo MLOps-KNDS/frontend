@@ -15,7 +15,7 @@ export default function NavigationBar() {
           backgroundColor: ThemeColors.secondary,
         },
       }}
-      style={{ height: "100vh", width: "5rem", zIndex: 1, position: "sticky" }}
+      style={{ height: "100vh", width: "5rem", zIndex: 1, position: "sticky", top: 0, left: 0}}
       transitionDuration={200}
       defaultCollapsed={true}
       width="11rem"

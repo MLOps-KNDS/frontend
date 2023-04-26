@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import { ThemeColors } from '@/ThemeColors';
 
 const LoginButton = () => {
     const { data: session, status } = useSession();
@@ -13,7 +14,7 @@ const LoginButton = () => {
     else
         return (
             <div className="float-right">
-                <Button variant="outlined" onClick={() => {signIn()}}>Login</Button>
+                <Button variant='outlined' className="bg-blue-200 text-blue-700 my-2" size="large" onClick={() => {signIn()}}>Login</Button>
             </div>
         );
 }
