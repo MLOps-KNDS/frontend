@@ -17,7 +17,7 @@ export const UserData = () => {
         <div>
             <div className="text-4xl text-center my-5" style={{color: ThemeColors.tertiary}}>Welcome back {session?.user?.name} {session?.user?.email}! 🤗</div>
             <DataTable rows={rows} columns={columns}/>
-            <Button variant="contained" color="primary" className="bg-blue-400" onClick={setAddModel}>Add a Model</Button>
+            <Button variant="contained" color="primary" className="bg-blue-400 float-right" onClick={setAddModel}>Add a Model</Button>
             <Popup open={addModelPop} onClose={() => setAddModelPop(false)}>
                 <AddModelPopup setVisible={setAddModelPop}/>
             </Popup>
