@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridCell, GridCellParams, GridRowId } from '@mui/x-data-grid';
+import { DataGrid, GridCell, GridCellParams, GridRowId, GridRowParams } from '@mui/x-data-grid';
 import { GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { Row } from '@/Types';
 import { ModelPopup } from './ModelPopup';
@@ -8,7 +8,7 @@ import Popup from 'reactjs-popup';
 
 export default function DataTable({rows, columns}: {rows: GridRowsProp, columns: GridColDef[]}) {
   const [selectionModel, setSelectionModel] = React.useState<number | string>();
-  const tableCellHandler = (params: GridCellParams, event: React.MouseEvent) => {
+  const tableRowHandler = (params: GridRowParams) => {
     setSelectionModel(params.id);
   };
 
@@ -29,7 +29,7 @@ export default function DataTable({rows, columns}: {rows: GridRowsProp, columns:
           pageSizeOptions={[5]}
           checkboxSelection
           disableRowSelectionOnClick
-          onCellClick={tableCellHandler}
+          onRowClick={tableRowHandler}
         />
       </Box>
       <Popup open={selectionModel !== undefined} onClose={() => setSelectionModel(undefined)}>
