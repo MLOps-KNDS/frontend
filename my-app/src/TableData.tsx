@@ -1,46 +1,69 @@
 import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Row } from './Types';
+import { Model } from './Types';
 
+
+// model columns
 export const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
-      field: 'firstName',
-      headerName: 'First name',
+      field: 'name',
+      headerName: 'Model Name',
       width: 150,
-      editable: true,
     },
     {
-      field: 'lastName',
-      headerName: 'Last name',
+      field: 'status',
+      headerName: 'Status',
       width: 150,
-      editable: true,
     },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 110,
-      editable: true,
+      field: 'createdAt',
+      headerName: 'Created at',
+      width: 150,
     },
     {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      field: 'updatedAt',
+      headerName: 'Updated at',
+      width: 150,
+    },
+    {
+      field: 'description',
+      headerName: 'Description',
+      width: 150,
     },
   ];
 
-export const rows: Row[] = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  ];
+// model example data
+export const rows: Model[] = [
+    {
+      id: 1,
+      name: 'Snow',
+      status: "ACTIVE",
+      createdAt: "2021-10-10",
+      updatedAt: "2021-10-10",
+      description: "Snow is white",
+    },
+    {
+      id: 2,
+      name: 'Lannister',
+      status: "INACTIVE",
+      createdAt: "2021-10-10",
+      updatedAt: "2021-10-10",
+      description: "A Lannister always pays his debts",
+    },
+    {
+      id: 3,
+      name: 'Mario',
+      status: "ACTIVE",
+      createdAt: "2021-10-10",
+      updatedAt: "2021-10-10",
+      description: "It's a me, Mario!",
+    },
+    {
+      id: 4,
+      name: 'Yuuki',
+      status: "ACTIVE",
+      createdAt: "2021-10-10",
+      updatedAt: "2021-10-10",
+      description: "I'm Yuuki",
+    },
+];

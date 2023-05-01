@@ -1,8 +1,8 @@
-import { GridRowsProp } from "@mui/x-data-grid";
-
-export type Row = {
+export type Model = {
     id: number;
-    lastName: string;
-    firstName: string | null;
-    age: number | null;
+    name: string;
+    status: "ACTIVE" | "INACTIVE";
+    createdAt: string;
+    updatedAt: string;
+    description: string;
 };

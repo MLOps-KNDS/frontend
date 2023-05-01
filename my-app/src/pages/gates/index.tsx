@@ -1,6 +1,12 @@
+import { BaseLayout } from "@/components/BaseLayout";
+
 const Gates = () => {
-    return <h1>Gates</h1>;
+    return (
+      <BaseLayout>
+        <h1>Gates</h1>
+      </BaseLayout>
+    )
   };
   
-  export default Gates;
+export default Gates;
   

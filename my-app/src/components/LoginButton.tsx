@@ -7,13 +7,13 @@ const LoginButton = () => {
     if (session?.user)
         return (
             <div className="float-right">
-                <Button variant='outlined' className="bg-blue-200 text-blue-700 my-2" size="large" onClick={() => {signOut()}}>Logout</Button>
+                <Button variant='outlined' className="bg-blue-200 text-blue-700 my-2" size="medium" onClick={() => {signOut()}}>Logout</Button>
             </div>
         )
     else
         return (
             <div className="float-right">
-                <Button variant='outlined' className="bg-blue-200 text-blue-700 my-2" size="large" onClick={() => {signIn()}}>Login</Button>
+                <Button variant='outlined' className="bg-blue-200 text-blue-700 my-2" size="medium" onClick={() => {signIn()}}>Login</Button>
             </div>
         );
 }

@@ -1,10 +1,12 @@
+import { BaseLayout } from "@/components/BaseLayout";
+
 const Models = () => {
     return (
-      <div>
+      <BaseLayout>
         <h1>Models</h1>
-      </div>
-    );
-};
+      </BaseLayout>
+    )
+  };
   
-  export default Models;
+export default Models;
   

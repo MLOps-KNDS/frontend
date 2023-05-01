@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridCell, GridCellParams, GridRowId, GridRowParams } from '@mui/x-data-grid';
 import { GridRowsProp, GridColDef } from '@mui/x-data-grid';
-import { Row } from '@/Types';
+import { Model } from '@/Types';
 import { ModelPopup } from './ModelPopup';
 import Popup from 'reactjs-popup';
 

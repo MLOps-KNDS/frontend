@@ -1,6 +1,12 @@
+import { BaseLayout } from "@/components/BaseLayout";
+
 const Metrics = () => {
-    return <h1>Metrics</h1>;
+    return (
+      <BaseLayout>
+        <h1>Metrics</h1>
+      </BaseLayout>
+    )
   };
   
-  export default Metrics;
+export default Metrics;
   
