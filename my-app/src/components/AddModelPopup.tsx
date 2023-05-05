@@ -1,26 +1,90 @@
 import { Button } from "@mui/material";
+import { ThemeColors } from "@/ThemeColors";
 import React from "react";
+import { ModelInput } from "@/Types";
+import { API_BASE_URL } from "@/settings";
+import { useSession } from "next-auth/react";
 
 export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.SetStateAction<boolean>>}) => {
-    const triggerAdd = () => {
-        console.log("triggered add");
+    const [name, setName] = React.useState<string>("");
+    const [description, setDescription] = React.useState<string>("");
+    const [file, setFile] = React.useState<File>();
+    const { data: session, status } = useSession();
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setFile(e.target.files[0]);
+        }
+    }
+
+    const triggerAdd = (name: string, description: string, file: File | undefined) => {
+        if (!session?.user?.email) {
+            alert("Please log in to add a model");
+            return;
+        }
+
+        if (checkName(name) !== 'OK') {
+            alert(checkName(name));
+            return;
+        }
+        console.log(name + " is ok");
+
+        if (!file) {
+            alert("Please select a file");
+            return;
+        }
+        console.log(file);
+
+        const model: ModelInput = {
+            name: name,
+            status: "INACTIVE",
+            description: description,
+            userEmail: session.user.email,
+        }
+
+        const formData = new FormData();
+        formData.append('model', JSON.stringify(model));
+
+        // if the response is ok let the user know
+        fetch(API_BASE_URL, {
+            method: 'POST',
+            body: formData,
+        }).then((response) => {
+            if (response.ok) {
+                alert("Model added successfully");
+                setVisible(false);
+            } else {
+                alert("Model could not be added");
+            }
+        });
+    }
+    const checkName = (name: string) => {
+        name = name.trim();
+        if (name.length === 0) {
+            return 'Name cannot be empty';
+        }
+        return 'OK';
     }
 
     return (
         <div className="bg-blue-100 bg-opacity-60 border-4 border-purple-300 rounded-sm m-auto">
             <div className="py-4 text-xl mb-2 text-center">Add a new model</div>
-            <div className="text-center flex-row flex justify-center">
+            <div className="text-center flex-wrap flex justify-center">
                 <div>
                     <div className="text-xl">Name: </div>
-                    <input className="border-2 border-purple-300 rounded-sm m-3 text-center w-32" type="text" placeholder="Name"/>
+                    <input className="border-2 border-purple-300 rounded-sm m-3 text-center w-32" type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}/>
                 </div>
                 <div>
                     <div className="text-xl">Description: </div>
-                    <input className="border-2 border-purple-300 rounded-sm m-3 text-center w-32" type="text" placeholder="Description"/>
+                    <input className="border-2 border-purple-300 rounded-sm m-3 text-center w-52" type="text" placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
+                </div>
+                <div>
+                    <div className="text-xl">File: </div>
+                    <input className="border-2 border-purple-300 rounded-sm m-3 text-center" type="file" onChange={handleFileChange}/>
                 </div>
             </div>
             <div className="flex justify-center my-3">
-                <Button variant="contained" color="secondary" className="mx-4 bg-blue-300" onClick={() => {triggerAdd}}>Add</Button>
+                <Button variant="contained" color="secondary" className="mx-4 bg-blue-300" onClick={() => {triggerAdd(name, description, file)}}>Add</Button>
                 <Button variant="contained" color="primary" className="mx-4 bg-blue-300" onClick={() => setVisible(false)}>Cancel</Button>
             </div>
         </div>

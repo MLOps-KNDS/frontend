@@ -6,3 +6,10 @@ export type Model = {
     updatedAt: string;
     description: string;
 };
+
+export type ModelInput = {
+    name: string;
+    status: "ACTIVE" | "INACTIVE";
+    description: string;
+    userEmail: string;
+};

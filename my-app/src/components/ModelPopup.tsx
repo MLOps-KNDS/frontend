@@ -1,30 +1,46 @@
+import { rows } from "@/TableData";
 import { Button } from "@mui/material";
 import React from "react";
+import { DeleteModelConfirm } from "./DeleteModelConfirm";
 
 
-
-export const ModelPopup = (props: {id: number}) => {
+export const ModelPopup = (modelId: {id: number}) => {
     const [deleteModel, setDeleteModel] = React.useState<boolean>(false);
+
+    const getModelById = (id: number) => {
+        const model = rows.find((model) => model.id === id);
+        if (model) {
+            return model;
+        }
+        else {
+            throw new Error("Model not found");
+        }
+    }
+
+    const model = getModelById(modelId.id);
+
     const askDelete = () => {
         setDeleteModel(true);
     }
-    const triggerDelete = () => {
-        console.log("triggered delete");
+    const saveChanges = () => {
+        console.log("save changes");
     }
 
     return (
-        <div className="bg-blue-100 bg-opacity-60 border-4 border-purple-300 rounded-sm" style={{height: "60vh", width: "45vw"}}>
-            <div className="text-center py-4 text-3xl">Model {props.id}</div>
-            <Button variant="contained" color="secondary" className="mx-4 bg-blue-300" onClick={askDelete}>Delete</Button>
-            {deleteModel ?
-                <div className="bg-blue-100 bg-opacity-60 border-4 border-purple-300 rounded-sm m-auto" style={{height: "20vh", width: "30vw"}}>
-                    <div className="text-center py-4 text-xl mb-3">Are you sure you want to delete model {props.id}?</div>
-                    <div className="flex justify-center">
-                        <Button variant="contained" color="secondary" className="mx-4 bg-blue-300" onClick={triggerDelete}>Delete</Button>
-                        <Button variant="contained" color="primary" className="mx-4 bg-blue-300" onClick={() => setDeleteModel(false)}>Cancel</Button>
-                    </div>
+        <div>
+            <div className="bg-blue-100 bg-opacity-60 border-4 border-purple-300 rounded-sm flex flex-col justify-center">
+                <div className="text-center text-3xl my-2">Model {model.id}</div>
+                <div className="text-center text-2xl my-1">Name: {model.name}</div>
+                <div className="text-center text-xl">Last updated: {model.updatedAt}</div>
+                <div className="text-center text-xl">Description:</div>
+                <div className="text-center text-xl border-4 w-80">{model.description}</div>
+                <div className="text-center text-xl">Created at: {model.createdAt}</div>
+                <div className="flex-row text-center my-4">
+                    <Button variant="contained" color="secondary" className="mx-4 bg-blue-300 w-fit" onClick={saveChanges}>Save</Button>
+                    <Button variant="contained" color="secondary" className="mx-4 bg-blue-300 w-fit" onClick={askDelete}>Delete</Button>
                 </div>
-            : null}
+            </div>
+            <DeleteModelConfirm setDeleteModel={setDeleteModel} model={model} deleteModel={deleteModel}/>
         </div>
     );
 }
