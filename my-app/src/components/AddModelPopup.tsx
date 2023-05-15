@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { ThemeColors } from "@/ThemeColors";
 import React from "react";
 import { ModelInput } from "@/Types";
-import { API_BASE_URL } from "@/config";
+import { API_BASE_URL } from "@/Config";
 import { useSession } from "next-auth/react";
 
 async function sendModel(model: ModelInput) {
