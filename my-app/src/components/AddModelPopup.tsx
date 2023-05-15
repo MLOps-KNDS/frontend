@@ -5,6 +5,14 @@ import { ModelInput } from "@/Types";
 import { API_BASE_URL } from "@/config";
 import { useSession } from "next-auth/react";
 
+async function sendModel(model: ModelInput) {
+    // if the response is ok let the user know
+    return fetch(API_BASE_URL, {
+        method: 'POST',
+        body: JSON.stringify(model),
+    });
+}
+
 export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [name, setName] = React.useState<string>("");
     const [description, setDescription] = React.useState<string>("");
@@ -17,7 +25,7 @@ export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.Se
         }
     }
 
-    const triggerAdd = (name: string, description: string, file: File | undefined) => {
+    async function triggerAdd(name: string, description: string, file: File | undefined) {
         if (!session?.user?.email) {
             alert("Please log in to add a model");
             return;
@@ -45,15 +53,14 @@ export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.Se
         console.log(JSON.stringify(model));
 
         // if the response is ok let the user know
-        fetch(API_BASE_URL, {
-            method: 'POST',
-            body: JSON.stringify(model),
-        }).then((response) => {
+        const response = sendModel(model);
+        await response.then((response) => {
             if (response.ok) {
                 alert("Model added successfully");
                 setVisible(false);
-            } else {
-                alert("Model could not be added");
+            }
+            else {
+                alert("Error adding model");
             }
         });
     }

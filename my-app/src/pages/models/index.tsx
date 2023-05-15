@@ -1,10 +1,8 @@
-import { BaseLayout } from "@/components/BaseLayout";
+import IndexPage from "..";
 
 const Models = () => {
     return (
-      <BaseLayout>
-        <h1>Models</h1>
-      </BaseLayout>
+      <IndexPage/>
     )
   };
   

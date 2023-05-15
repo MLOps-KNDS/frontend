@@ -28,14 +28,13 @@ export const ModelPopup = (modelId: {id: number}) => {
 
     return (
         <div>
-            <div className="bg-blue-100 bg-opacity-60 border-4 border-purple-300 rounded-sm flex flex-col justify-center">
-                <div className="text-center text-3xl my-2">Model {model.id}</div>
-                <div className="text-center text-2xl my-1">Name: {model.name}</div>
-                <div className="text-center text-xl">Last updated: {model.updatedAt}</div>
-                <div className="text-center text-xl">Description:</div>
-                <div className="text-center text-xl border-4 w-80">{model.description}</div>
-                <div className="text-center text-xl">Created at: {model.createdAt}</div>
-                <div className="flex-row text-center my-4">
+            <div className="bg-blue-100 bg-opacity-60 border-4 border-purple-300 rounded-sm flex flex-col justify-center text-center text-xl">
+                <div className="text-3xl my-2">Model {model.name}</div>
+                <div>Description:</div>
+                <div className="border-4 w-80">{model.description}</div>
+                <div>Last updated: {model.updatedAt}</div>
+                <div>Created at: {model.createdAt}</div>
+                <div className="flex-row my-4">
                     <Button variant="contained" color="secondary" className="mx-4 bg-blue-300 w-fit" onClick={saveChanges}>Save</Button>
                     <Button variant="contained" color="secondary" className="mx-4 bg-blue-300 w-fit" onClick={askDelete}>Delete</Button>
                 </div>
