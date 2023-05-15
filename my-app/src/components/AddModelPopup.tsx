@@ -13,11 +13,31 @@ async function sendModel(model: ModelInput) {
     });
 }
 
+const checkName = (name: string) => {
+    name = name.trim();
+    if (name.length === 0) {
+        return 'Name cannot be empty';
+    }
+    return 'OK';
+}
+
 export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [name, setName] = React.useState<string>("");
     const [description, setDescription] = React.useState<string>("");
     const [file, setFile] = React.useState<File>();
     const { data: session, status } = useSession();
+
+    const checkInput = (name: string, description: string, file: File | undefined) => {
+        if (checkName(name) !== 'OK') {
+            return checkName(name);
+        }
+        console.log(name + " is ok");
+
+        if (!file) {
+            return "Please select a file"
+        }
+        return "OK";
+    }
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -27,21 +47,13 @@ export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.Se
 
     async function triggerAdd(name: string, description: string, file: File | undefined) {
         if (!session?.user?.email) {
-            alert("Please log in to add a model");
+            return "Please log in to add a model"
+        }
+        const check = checkInput(name, description, file);
+        if (check !== 'OK') {
+            alert(check);
             return;
         }
-
-        if (checkName(name) !== 'OK') {
-            alert(checkName(name));
-            return;
-        }
-        console.log(name + " is ok");
-
-        if (!file) {
-            alert("Please select a file");
-            return;
-        }
-        console.log(file);
 
         const model: ModelInput = {
             name: name,
@@ -63,13 +75,6 @@ export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.Se
                 alert("Error adding model");
             }
         });
-    }
-    const checkName = (name: string) => {
-        name = name.trim();
-        if (name.length === 0) {
-            return 'Name cannot be empty';
-        }
-        return 'OK';
     }
 
     return (
