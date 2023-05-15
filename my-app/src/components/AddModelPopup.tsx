@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { ThemeColors } from "@/ThemeColors";
 import React from "react";
 import { ModelInput } from "@/Types";
-import { API_BASE_URL } from "@/settings";
+import { API_BASE_URL } from "@/config";
 import { useSession } from "next-auth/react";
 
 export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.SetStateAction<boolean>>}) => {
@@ -42,13 +42,12 @@ export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.Se
             userEmail: session.user.email,
         }
 
-        const formData = new FormData();
-        formData.append('model', JSON.stringify(model));
+        console.log(JSON.stringify(model));
 
         // if the response is ok let the user know
         fetch(API_BASE_URL, {
             method: 'POST',
-            body: formData,
+            body: JSON.stringify(model),
         }).then((response) => {
             if (response.ok) {
                 alert("Model added successfully");
