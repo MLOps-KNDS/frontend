@@ -47,7 +47,8 @@ export const AddModelPopup = ({setVisible}: {setVisible: React.Dispatch<React.Se
 
     async function triggerAdd(name: string, description: string, file: File | undefined) {
         if (!session?.user?.email) {
-            return "Please log in to add a model"
+            alert("Please log in to add a model");
+            return;
         }
         const check = checkInput(name, description, file);
         if (check !== 'OK') {
