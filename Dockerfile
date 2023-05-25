@@ -1,5 +1,3 @@
 FROM ubuntu:latest
 
-CMD ["pwd"]
-
-# dummy dockefile, should be replaced by a real one
+CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
